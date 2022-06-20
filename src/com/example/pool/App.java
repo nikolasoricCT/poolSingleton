@@ -36,5 +36,26 @@ public class App {
         }
 
         System.out.println("All tasks completed.");
+
+        Single obj = Single.getInstance();
+    }
+}
+
+class Single {
+    public static Single obj;
+    int i;
+    private Single(){
+        System.out.println("called");
+    }
+
+    public static  Single getInstance(){         //
+        if(obj == null) {
+            synchronized (Single.class){
+                if(obj == null)
+                obj = new Single();
+            }
+
+        }
+        return obj;
     }
 }
